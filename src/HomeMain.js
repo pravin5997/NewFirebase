@@ -26,9 +26,9 @@ export default class Main extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/mainhome/home">Home</Nav.Link>
-                            <Nav.Link href="/mainhome/user-table">User Table</Nav.Link>
-                            <Nav.Link href="/mainhome/piechart">Pie Chart</Nav.Link>
+                            <Nav.Link href="/mainhome/home">LeaveApply</Nav.Link>
+                            <Nav.Link href="/mainhome/user-table">UserTable</Nav.Link>
+                            <Nav.Link href="/mainhome/piechart">PieChart</Nav.Link>
                             <Nav.Link href="/mainhome/">Chart</Nav.Link>
                             <Nav.Link onClick={this.logOutHandle} href="/sign-in">SignOut</Nav.Link>
                         </Nav>

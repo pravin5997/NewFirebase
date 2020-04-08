@@ -1,31 +1,6 @@
 import React from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 import fire from './config/Fire'
-
-// const state = {
-//   labels: ['Sick Leave', 'Vacation Leave', 'Casual Leave',
-//            'Study Leave', 'Maternity Leave'],
-//   datasets: [
-//     {
-//       label: 'Rainfall',
-//       backgroundColor: [
-//         '#B21F00',
-//         '#C9DE00',
-//         '#2FDE00',
-//         '#00A6B4',
-//         '#6800B4'
-//       ],
-//       hoverBackgroundColor: [
-//       '#501800',
-//       '#4B5000',
-//       '#175000',
-//       '#003350',
-//       '#35014F'
-//       ],
-//       data: [1, 5, 2, 0, 3]
-//     }
-//   ]
-// }
 
 export default class UserPieChart extends React.Component {
     constructor(props){
@@ -78,35 +53,62 @@ export default class UserPieChart extends React.Component {
        fire.database().ref("/userData/"+ uid).once("value")
        .then((snapshot) =>{
          const userObect = snapshot.val();
-         console.log(userObect)
+         const CasualLeave =[]
+         const MaternityLeave = []
+         const VacationLeave = []
+         const SickLeave = []
+         const QuarantineLeave = []
+         const EarnedLeave = []
+         const StudyLeave = []
+         const HalfPay = []
          for (var j in userObect){
              if(userObect[j].leave_type == "Maternity Leave"){
-                this.setState({Maternity:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              MaternityLeave.push(totalLeave)
+              const totalCasual = MaternityLeave.reduce((a,b)=>a+b)
+                this.setState({Maternity:totalCasual}) 
              }
              if(userObect[j].leave_type == "Vacation leave"){
-                this.setState({Vacation:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              VacationLeave.push(totalLeave)
+              const totalCasual = VacationLeave.reduce((a,b)=>a+b)
+                this.setState({Vacation:totalCasual}) 
              }
              if(userObect[j].leave_type == "Sick Leave or Medical Leave"){
-                this.setState({Sick:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              SickLeave.push(totalLeave)
+              const totalCasual = SickLeave.reduce((a,b)=>a+b)
+                this.setState({Sick:totalCasual}) 
              }
              if(userObect[j].leave_type == "Casual Leave"){
-               const numberLeave =[]
-               const totalLeave = userObect[j].numberOfLeaves
-               numberLeave.push(totalLeave)
-               console.log(numberLeave)
-                this.setState({Casual:userObect[j].numberOfLeaves}) 
+               const totalLeave = parseInt(userObect[j].numberOfLeaves)
+               CasualLeave.push(totalLeave)
+               const totalCasual = CasualLeave.reduce((a,b)=>a+b)
+                this.setState({Casual:totalCasual}) 
              }
              if(userObect[j].leave_type == "Quarantine Leave"){
-                this.setState({Quarantine:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              QuarantineLeave.push(totalLeave)
+              const totalCasual = QuarantineLeave.reduce((a,b)=>a+b)
+                this.setState({Quarantine:totalCasual}) 
              }
              if(userObect[j].leave_type == "Earned Leave or Privilege Leave"){
-                this.setState({Earned:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              EarnedLeave.push(totalLeave)
+              const totalCasual = EarnedLeave.reduce((a,b)=>a+b)
+                this.setState({Earned:totalCasual}) 
              }
              if(userObect[j].leave_type == "Study Leave or Sabbatical Leave"){
-                this.setState({Study:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              StudyLeave.push(totalLeave)
+              const totalCasual = StudyLeave.reduce((a,b)=>a+b)
+                this.setState({Study:totalCasual}) 
              }
              if(userObect[j].leave_type == "Half Pay Leave"){
-                this.setState({HalfPay:userObect[j].numberOfLeaves}) 
+              const totalLeave = parseInt(userObect[j].numberOfLeaves)
+              HalfPay.push(totalLeave)
+              const totalCasual = HalfPay.reduce((a,b)=>a+b)
+              this.setState({HalfPay:totalCasual}) 
              }
          }
         
@@ -149,7 +151,6 @@ export default class UserPieChart extends React.Component {
         })
     }
   render() {
-    
     return (
       <div>
         <Pie

@@ -7,6 +7,9 @@ export default class DatePicker extends React.Component {
     super(props);
     this.state = {
       selectedDate: this.props.DateValue,
+      // selectedDate1:this.props.DateValue.getDate(),
+      // selectedMonth:this.props.DateValue.getMonth()+1,
+      // selectedYear:this.props.DateValue.getFullYear(),
       onChangeEvent: this.props.onChangeEvent
     };
   }

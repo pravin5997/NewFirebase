@@ -19,6 +19,7 @@ export default class Home extends Component {
             leaveDecsError:"",
             userName:props.userEmail,
             fromDate: new Date(),
+            currentDate:new Date(),
             toDate: new Date(),
             admin:"",
             adminError:"",
@@ -42,6 +43,7 @@ export default class Home extends Component {
        fire.database().ref("/user/"+ uid).once("value")
        .then((snapshot) =>{
          const userObect = snapshot.val();
+       
          this.setState({
                     userData:userObect,
                     userName:userObect.firstName
@@ -65,7 +67,10 @@ export default class Home extends Component {
             
          
         const userRef = fire.database().ref("userData/"+ uid)
-        const data = {leave_type:this.state.dropDown,numberOfLeaves:this.state.NumberOfLeave,apllyDate:this.state.fromDate.toLocaleDateString(),toDate:this.state.toDate.toLocaleDateString(),LeaveDecsp:this.state.leaveDecs,adminUid:this.state.multidata}
+        const fromDataFormat = this.state.fromDate.getDate()+"/"+parseInt(this.state.fromDate.getMonth()+1)+"/"+this.state.fromDate.getFullYear()
+        const toDateFormat = this.state.toDate.getDate()+"/"+parseInt(this.state.toDate.getMonth()+1)+"/"+this.state.toDate.getFullYear()
+        const currentDateFormat = this.state.currentDate.getDate()+"/"+parseInt(this.state.currentDate.getMonth()+1)+"/"+this.state.currentDate.getFullYear()
+        const data = {leave_type:this.state.dropDown,numberOfLeaves:this.state.NumberOfLeave,fromDate:fromDataFormat,toDate:toDateFormat,LeaveDecsp:this.state.leaveDecs,adminEmail:this.state.multidata,applyDate:currentDateFormat}
           userRef.push(data).then(res =>
               {
                   
@@ -127,7 +132,7 @@ export default class Home extends Component {
             
               if (item == i){
                 
-                finaldata.push(i)
+                finaldata.push( users[i].email)
               }
           } ) 
         }
@@ -136,7 +141,7 @@ export default class Home extends Component {
   }
  
     render() {
-      console.log(this.state.selectedOption)
+   
         return (
             <div className="auth-wrapper">
             <div className="auth-inner">
