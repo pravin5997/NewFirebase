@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import {Table} from 'react-bootstrap'
+import {Table,Card, Row, Col} from 'react-bootstrap'
 
 export default class UserTable extends Component {
     render() {
         return (
-            <div className ="App">
+            <div className ="App" style={{marginTop:"20px"}}>
+                <Row style={{margin:"0px"}}>
+                    <Col>
+                <Card>
                 <Table  responsive striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -51,7 +54,9 @@ export default class UserTable extends Component {
                         </tr>
                     </tbody>
                 </Table>
-           
+                </Card>
+                </Col>
+                </Row>
             </div>
         )
     }

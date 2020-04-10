@@ -1,7 +1,8 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 import fire from './config/Fire'
-import {Col} from 'react-bootstrap'
+import {Col,Card,Row,Grid} from 'react-bootstrap'
+import UserPieChart from './UserPieChart'
 
 export default class UersChart extends React.Component {
     constructor(props){
@@ -172,22 +173,51 @@ export default class UersChart extends React.Component {
   render() {
      
     return (
-      <div style={{height:"200px"}}>
-        <Line
-        height="100px"
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:true,
-              text:'All Leave Total per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
+      
+     
+      <div style={{marginTop:"20px"}}>
+         <Row style={{margin:"0px"}}>
+           <Col >
+    
+            <Card md={8} style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
+              <Card.Body>
+               
+              <Line
+                    height="101px"
+                    data={this.state.chartData}
+                    options={{
+                      title:{
+                        display:true,
+                        text:'All Leave Total per month',
+                        fontSize:20
+                      },
+                      legend:{
+                        display:true,
+                        position:'right'
+                      }
+                    }}
+                  />
+              </Card.Body>
+     
+            </Card>
+         
+          
+            </Col>
+            <Col md={4}>
+          
+            <Card style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
+         
+              <Card.Body>
+              <UserPieChart />
+              </Card.Body>
+             
+            </Card>
+           
+          
+            </Col>
+            </Row>
+     
+      
       </div>
     );
   }

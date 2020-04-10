@@ -143,11 +143,9 @@ export default class Home extends Component {
     render() {
    
         return (
-            <div className="auth-wrapper">
-            <div className="auth-inner">
-            <div className = "App" >
-              
-            <div className="container" >
+            <div className="auth-wrapper" >
+            <div className="auth-inner">         
+         
                 <Form>
                 <h1>welcome {this.state.userName}</h1>
                 <Form.Group controlId="exampleForm.ControlSelect1">
@@ -204,7 +202,6 @@ export default class Home extends Component {
                     <div style={{backgroundColor:"white",borderRadius:"0.25rem"}}>
                     <Multiselect
                         options={this.state.options}
-                        // selectedValues={this.state.multidata}
                         onSelect = {this.multiChange}
                         displayValue="name"
                         
@@ -218,9 +215,9 @@ export default class Home extends Component {
             <Button type="button" onClick ={this.onClickButton}>Apply</Button>
                 
             </div>
+            
             </div>
-            </div>
-            </div>
+  
         )
     }
 }

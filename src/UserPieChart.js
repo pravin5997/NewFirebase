@@ -62,6 +62,12 @@ export default class UserPieChart extends React.Component {
          const StudyLeave = []
          const HalfPay = []
          for (var j in userObect){
+           const leaveId =userObect[j]
+           const leaveData = (leaveId)=>{
+
+            }
+             
+           
              if(userObect[j].leave_type == "Maternity Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               MaternityLeave.push(totalLeave)
@@ -152,9 +158,9 @@ export default class UserPieChart extends React.Component {
     }
   render() {
     return (
-      <div>
+      
         <Pie
-            height="100px"
+            height="219px"
           data={this.state.ChartData}
           options={{
             title:{
@@ -169,7 +175,7 @@ export default class UserPieChart extends React.Component {
           }}
         />
 
-      </div>
+    
     );
   }
 }

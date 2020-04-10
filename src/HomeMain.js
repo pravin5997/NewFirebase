@@ -20,7 +20,7 @@ export default class Main extends Component {
         return (
             
             <Router>
-            <div className="App">
+          
             <Navbar bg="#003350" expand="lg">
                 <Navbar.Brand href={"/mainhome/"}><b>Leave Request</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -28,27 +28,24 @@ export default class Main extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/mainhome/home">LeaveApply</Nav.Link>
                             <Nav.Link href="/mainhome/user-table">UserTable</Nav.Link>
-                            <Nav.Link href="/mainhome/piechart">PieChart</Nav.Link>
+                            {/* <Nav.Link href="/mainhome/piechart">PieChart</Nav.Link> */}
                             <Nav.Link href="/mainhome/">Chart</Nav.Link>
                             <Nav.Link onClick={this.logOutHandle} href="/sign-in">SignOut</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
 
-            {/* <div className="auth-wrapper">
-                <div className="auth-inner"> */}
+            
                 <Switch>
                     <Route path="/mainhome/home" component={Home} />
                     <Route path="/mainhome/user-table" component={UserTable} />
-                    <Route path="/mainhome/piechart" component={Piechart} />
+                    {/* <Route path="/mainhome/piechart" component={Piechart} /> */}
                     <Route path="/mainhome/" component={Chart} />
                     {/* <Route exact path="/mainhome/" component={Welcome} /> */}
                     <Route path="/sign-in" component={Login} />
                    
                 </Switch>
-                {/* </div>
-            </div> */}
-            </div>
+             
         </Router>
             
         )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import fire from './config/Fire'
 import { Link } from "react-router-dom";
+import { Form,Button } from 'react-bootstrap';
 
 const emailRegex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
 export default class Login extends Component {
@@ -56,30 +57,29 @@ export default class Login extends Component {
         
         return (
             <div className="auth-wrapper">
-                <div className="auth-inner">
-                 <form>
+                <div className="auth-inner" >
+                 <Form>
                 <h3>Sign In</h3>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" value={this.state.email} onChange={this.onChangeHandel} name="email" id="emailId" placeholder="Enter email" />
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" value={this.state.email} onChange={this.onChangeHandel} name="email" id="emailId" placeholder="Enter email" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.emailError}</p>
-                </div>
-                
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" value={this.state.password} onChange={this.onChangeHandel}  name="password" id="password" placeholder="Enter password" />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" value={this.state.password} onChange={this.onChangeHandel}  name="password" id="password" placeholder="Enter password" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.passwordError}</p>
-                </div>
+                </Form.Group>
+              
                 
 
-                <button type="submit"  onClick={this.handleLogin} className="btn btn-primary btn-block">Login</button>
-                <p className="forgot-password text-right">
-                Not Registered yet.Go to registration <Link to="/sign-up">sign up?</Link>
+                <Button type="submit"  onClick={this.handleLogin} className="btn btn-primary btn-block">Login</Button>
+                <p className="singin-or-singup text-right">
+                Not Registered yet.Go to registration <Link to="/sign-up" style={{textDecoration:"none"}}>sign up?</Link>
                 </p>
                 
                 
-            </form>
+            </Form>
             </div>
             </div>
         )

@@ -15,9 +15,7 @@ export default class Main extends Component {
         return (
             
                 <Router>
-                    <div className="App" style={{boxSizing:"border-box"}}>
-                    {/* <div className="auth-wrapper">
-                        <div className="auth-inner"> */}
+                  
                         <Switch>
                             <Route exact path='/' component={Login} />
                             <Route path="/sign-in" component={Login} />
@@ -25,9 +23,7 @@ export default class Main extends Component {
                             <Route path="/mainhome" component={MainHome} />
                            
                         </Switch>
-                        {/* </div>
-                    </div> */}
-                    </div>
+                       
                 </Router>
             
         )
