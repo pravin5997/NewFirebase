@@ -6,6 +6,7 @@ import MainHome from './HomeMain'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SideBar from './HomeSidebar'
+import adminSidebar from './adminSidebar'
 
 export default class Main extends Component {
     logOutHandle = () =>{
@@ -23,6 +24,7 @@ export default class Main extends Component {
                             <Route path="/sign-up" component={SignUp} />
                             {/* <Route path="/mainhome" component={MainHome} /> */}
                             <Route path="/sidebar" component={SideBar} />
+                            <Route path="/admin" component={adminSidebar} />
                         </Switch>
                        
                 </Router>

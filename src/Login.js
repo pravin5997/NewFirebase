@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import fire from './config/Fire'
 import { Link } from "react-router-dom";
 import { Form,Button } from 'react-bootstrap';
+import NotificationSystem from 'react-notification-system';
 
 const emailRegex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
 export default class Login extends Component {
+    notificationSystem = React.createRef()
     constructor(props){
         super(props)
         this.state = {
@@ -20,13 +22,32 @@ export default class Login extends Component {
     handleLogin = (event) =>{
         this.valid();
         event.preventDefault();
+       
+       
+        if(this.state.email =="hitesh123@gmail.com"){
+         
+            const notification = this.notificationSystem.current;
+            notification.addNotification({
+                message: 'Admin login successfull',
+                level: 'success'
+              })
+            
         fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((res) =>{
             
+            this.props.history.push("/admin")
+            
+        }).catch((error) => {
+            console.log(error)
+        })
+    }else{
+        
+        fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((res) =>{
             this.props.history.push("/sidebar")
             
         }).catch((error) => {
             console.log(error)
         })
+    }
     }
     valid() {
         if (this.state.email.length === 0) {
@@ -58,6 +79,7 @@ export default class Login extends Component {
         return (
             <div className="auth-wrapper">
                 <div className="auth-inner" >
+                <NotificationSystem ref={this.notificationSystem} />
                  <Form>
                 <h3>Sign In</h3>
                 <Form.Group>

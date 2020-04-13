@@ -24,7 +24,7 @@ export default class Home extends Component {
             toDate: new Date(),
             admin:"",
             adminError:"",
-            options: [{name: 'Hitesh Sir', id: "mX8lidTOUmZ2xLPIQsXvP7C4dmX2"},{name: 'Gujan Sir', id: "pNowOO0jTXfsUZ2Yuz2xKLxotME2"},{name: 'Jay Bhai', id: "oZmpCay2OOhHxPOjHp0ZkvXcacu2"}],
+            options: [{name: 'Hitesh Sir', id: "tUL8MC88xSaMHXv08LHHkv1rdoG2"},{name: 'Gujan Sir', id: "pNowOO0jTXfsUZ2Yuz2xKLxotME2"},{name: 'Jay Bhai', id: "oZmpCay2OOhHxPOjHp0ZkvXcacu2"}],
             selectedList:[],
             selectedItem:[],
             selectedValue:"",
@@ -144,8 +144,8 @@ export default class Home extends Component {
     render() {
    
         return (
-                  
-         <div className="container" style={{ boxShadow:" 0px 14px 80px rgba(10,58, 5, 0.2)",padding:"10px",borderRadius:"15px"}}>
+       
+         <div className="container" style={{ boxShadow:" 0px 14px 80px rgba(10,58, 5, 0.2)",padding:"10px",borderRadius:"15px"}}> 
                 <Row><Col>
                 <Form>
                 {/* <h1 >welcome {this.state.userName}</h1> */}
@@ -180,6 +180,7 @@ export default class Home extends Component {
                         options={this.state.options}
                         onSelect = {this.multiChange}
                         displayValue="name"
+                       
                     />
                     {/* </div> */}
                 </Form.Group>

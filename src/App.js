@@ -4,6 +4,7 @@ import Main from './Main'
 import { database } from 'firebase'
 // import SideBar from './Sidebar'
 import MyDetail from './Form'
+import Notification from './Notification'
 
 
 export default class App extends Component {
@@ -13,6 +14,7 @@ export default class App extends Component {
     return (
       <div className="App">
        <Main />
+       {/* <Notification /> */}
        {/* <MyDetail /> */}
        {/* <SideBar /> */}
       </div>

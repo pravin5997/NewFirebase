@@ -1,45 +1,8 @@
 import React, { Component } from 'react'
 import {Table,Card, Row, Col} from 'react-bootstrap'
-import fire from './config/Fire'
 
-export default class UserTable extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            userData:[],
-            applyDates:[],
-            admin:[],
-            mainData:[]
-        }
-    }
-    componentDidMount (){
-        fire.auth().onAuthStateChanged((user)=>{
-            const uid = user.uid;
-        fire.database().ref("/userData/"+ uid).once("value")
-       .then((snapshot) =>{
-            const userObject = snapshot.val();
-            const leaveType = []
-            const applyDate = []
-            const aprovedBy = []
-            const tableData = []
-       for (var j in userObject){
-           leaveType.push(userObject[j].leave_type)
-           applyDate.push(userObject[j].applyDate)
-           aprovedBy.push(userObject[j].adminEmail)
-           
-       }
-       tableData.push(leaveType,aprovedBy,applyDate)
-         this.setState({
-                    userData:leaveType,
-                    applyDates:applyDate,
-                    admin:aprovedBy,
-                    mainData:tableData
-                    })
-       })
-        })
-    }
+export default class AdminTable extends Component {
     render() {
-        
         return (
             <div className="container">
                 <Row style={{margin:"0px"}}>
