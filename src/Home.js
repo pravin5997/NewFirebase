@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import fire from './config/Fire'
-import {Button, Form,FormGroup,FormLabel,Navbar,Nav,Col} from 'react-bootstrap'
+import {Button, Form,FormGroup,FormLabel,Navbar,Nav,Col,Row} from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import DatePicker from "./DatePickerInput";
 import { Multiselect } from 'multiselect-react-dropdown';
+// import './formcss.css';
 
 export default class Home extends Component {
     constructor(props){
@@ -23,7 +24,7 @@ export default class Home extends Component {
             toDate: new Date(),
             admin:"",
             adminError:"",
-            options: [{name: 'Hitesh Sir', id: "VF2yj2SuNMPfS4C16Vd5Jd0e1do1"},{name: 'Gujan Sir', id: "zb6oP0NqFTWlxmhwBPW8Jpxvbm13"},{name: 'Jay Bhai', id: "PQ6NEf6yHkTTfurhWoF6uW5CxF92"}],
+            options: [{name: 'Hitesh Sir', id: "mX8lidTOUmZ2xLPIQsXvP7C4dmX2"},{name: 'Gujan Sir', id: "pNowOO0jTXfsUZ2Yuz2xKLxotME2"},{name: 'Jay Bhai', id: "oZmpCay2OOhHxPOjHp0ZkvXcacu2"}],
             selectedList:[],
             selectedItem:[],
             selectedValue:"",
@@ -74,11 +75,9 @@ export default class Home extends Component {
           userRef.push(data).then(res =>
               {
                   
-                  this.props.history.push("/mainhome/")
+                  this.props.history.push("/sidebar")
               })
             })
-    
-        
     }
     }
     valid() {
@@ -123,6 +122,7 @@ export default class Home extends Component {
       const userRef = fire.database().ref("user");
       userRef.on("value",(snapshot)=>{
         let users = snapshot.val()
+        console.log(users)
         let finaldata = []
        let events = selectedData.map((item) =>item.id)
      
@@ -136,6 +136,7 @@ export default class Home extends Component {
               }
           } ) 
         }
+       
       this.setState({multidata:finaldata.toString()})
     })
   }
@@ -143,11 +144,11 @@ export default class Home extends Component {
     render() {
    
         return (
-            <div className="auth-wrapper" >
-            <div className="auth-inner">         
-         
+                  
+         <div className="container" style={{ boxShadow:" 0px 14px 80px rgba(10,58, 5, 0.2)",padding:"10px",borderRadius:"15px"}}>
+                <Row><Col>
                 <Form>
-                <h1>welcome {this.state.userName}</h1>
+                {/* <h1 >welcome {this.state.userName}</h1> */}
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Leave Type</Form.Label>
                     <Form.Control as="select" value={this.state.dropDown} name="dropDown" onChange={this.onChangeHandle}>
@@ -163,15 +164,31 @@ export default class Home extends Component {
                     </Form.Control>
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.dropDownError}</p>
                 </Form.Group>
-                <FormGroup>
-                    <FormLabel>Number Of Leave</FormLabel>
-                    <input type="number" value={this.state.NumberOfLeave} onChange = {this.onChangeHandle} name="NumberOfLeave" id="number" className="form-control" placeholder="Number of leave" />
-                    <p style={{ color: 'red', fontSize: '12px' }}>{this.state.NumberOfLeaveErroe}</p>
-                </FormGroup>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>Number Of Leave</Form.Label>
+                        <input type="number" value={this.state.NumberOfLeave} onChange = {this.onChangeHandle} name="NumberOfLeave" id="number" className="form-control" placeholder="Number of leave" />
+                        <p style={{ color: 'red', fontSize: '12px' }}>{this.state.NumberOfLeaveErroe}</p>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                  <Form.Group>
+                    <Form.Label>Admin</Form.Label>
+                    {/* <div style={{backgroundColor:"white",borderRadius:"0.25rem"}}> */}
+                    <Multiselect
+                        options={this.state.options}
+                        onSelect = {this.multiChange}
+                        displayValue="name"
+                    />
+                    {/* </div> */}
+                </Form.Group>
+                  </Col>
+                </Row>
                 <Form.Row>
                     <Form.Group as={Col} md={6}>
                       <Form.Label>
-                        <h5>From</h5>
+                        From
                       </Form.Label>
                       <br />
                       <DatePicker
@@ -182,7 +199,7 @@ export default class Home extends Component {
                     {(this.state.NumberOfLeave >1) ? (
                       <Form.Group as={Col} md={6}>
                         <Form.Label>
-                          <h5>To</h5>
+                          To
                         </Form.Label>
                         <br />
                         <DatePicker
@@ -197,26 +214,15 @@ export default class Home extends Component {
                     <textarea value={this.state.leaveDecs} onChange = {this.onChangeHandle} name="leaveDecs" id="leaveDecs" className="form-control" placeholder="Description" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.leaveDecsError}</p>
                 </FormGroup>
-                <Form.Group controlId="exampleForm.ControlSelect2">
-                    <Form.Label>Admin</Form.Label>
-                    <div style={{backgroundColor:"white",borderRadius:"0.25rem"}}>
-                    <Multiselect
-                        options={this.state.options}
-                        onSelect = {this.multiChange}
-                        displayValue="name"
-                        
-                        
-                    />
-                    </div>
-                   
-                </Form.Group>
+              
+               
                 
             </Form>
-            <Button type="button" onClick ={this.onClickButton}>Apply</Button>
-                
+            <Button type="button" onClick ={this.onClickButton} style={{float:"right"}} to="/sidebar" >Apply</Button>
+            </Col></Row>  
             </div>
             
-            </div>
+           
   
         )
     }

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAlignLeft } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Button, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 export default props => {
 
@@ -18,17 +19,9 @@ export default props => {
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink tag={Link} to={'/page-1'}>page 1</NavLink>
+           <Button color="info" style={{height:"40px",padding:"1px 5px"}}><NavLink style={{color:"white"}}  href={'/'}><span><FaSignOutAlt /></span> Sign Out</NavLink></Button>
           </NavItem>
-          <NavItem>
-            <NavLink tag={Link} to={'/page-2'}>page 2</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={Link} to={'/page-3'}>page 3</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={Link} to={'/page-4'}>page 4</NavLink>
-          </NavItem>
+         
       </Nav>
       </Collapse>
     </Navbar>

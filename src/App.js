@@ -3,6 +3,7 @@ import fire from './config/Fire'
 import Main from './Main'
 import { database } from 'firebase'
 // import SideBar from './Sidebar'
+import MyDetail from './Form'
 
 
 export default class App extends Component {
@@ -12,6 +13,7 @@ export default class App extends Component {
     return (
       <div className="App">
        <Main />
+       {/* <MyDetail /> */}
        {/* <SideBar /> */}
       </div>
     );

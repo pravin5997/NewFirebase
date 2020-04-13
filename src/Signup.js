@@ -32,7 +32,7 @@ export default class Signup extends Component {
             userRef.set(data).then(res =>
                 {
                     
-                    this.props.history.push("/mainhome")
+                    this.props.history.push("/sidebar")
                 })
         })
         .catch((error) => {
@@ -92,53 +92,30 @@ export default class Signup extends Component {
                 <h3>Sign Up</h3>
 
                
-                <Form.Group  controlId="formGridFirstName">
+                <Form.Group>
                     <Form.Label>First name</Form.Label>
                     <Form.Control type="text" onChange={this.onChangeHandel} value={this.state.firstName} name="firstName" id="firstName" placeholder="First name"/>
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.firstNameError}</p>
                 </Form.Group>
-                <Form.Group  controlId="formGridLastName">
+                <Form.Group>
                     <Form.Label>Last name</Form.Label>
                     <Form.Control type="text" onChange={this.onChangeHandel} value={this.state.lastName} name="lastName" id="lastName" placeholder="Last name" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.lastNameError}</p>
                 </Form.Group>
-                <Form.Group  controlId="formGridEmail">
+                <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" onChange={this.onChangeHandel} value={this.state.email} name = "email" id="email" placeholder="Enter email"/>
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.emailError}</p>
                 </Form.Group>
-                <Form.Group  controlId="formGridPassword">
+                <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" onChange={this.onChangeHandel} value={this.state.password} name ="password" id="password" className="form-control" placeholder="Enter password"/>
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.passwordError}</p>
                 </Form.Group>
-{/* 
-                <div className="form-group">
-                    <label>First name</label>
-                    <input type="text" onChange={this.onChangeHandel} value={this.state.firstName} name="firstName" id="firstName" className="form-control" placeholder="First name" />
-                    <p style={{ color: 'red', fontSize: '12px' }}>{this.state.firstNameError}</p>
-                </div>
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input type="text" onChange={this.onChangeHandel} value={this.state.lastName} name="lastName" id="lastName" className="form-control" placeholder="Last name" />
-                    <p style={{ color: 'red', fontSize: '12px' }}>{this.state.lastNameError}</p>
-                </div>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" onChange={this.onChangeHandel} value={this.state.email} name = "email" id="email" className="form-control" placeholder="Enter email" />
-                    <p style={{ color: 'red', fontSize: '12px' }}>{this.state.emailError}</p>
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" onChange={this.onChangeHandel} value={this.state.password} name ="password" id="password" className="form-control" placeholder="Enter password" />
-                    <p style={{ color: 'red', fontSize: '12px' }}>{this.state.passwordError}</p>
-                </div> */}
 
                 <Button type="submit" onClick = {this.handleSignUp} className="btn btn-primary btn-block">Sign Up</Button>
                 <p className="singin-or-singup text-right">
-                    Already registered <Link to="/sign-in" style={{textDecoration:"none"}}>sign in?</Link>
+                    Already registered <Link to="/sign-in" style={{textDecoration:"none",color:"blue"}}>sign in?</Link>
                 </p>
             </Form>
             </div>

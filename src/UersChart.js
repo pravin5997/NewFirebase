@@ -177,9 +177,9 @@ export default class UersChart extends React.Component {
      
       <div style={{marginTop:"20px"}}>
          <Row style={{margin:"0px"}}>
-           <Col >
+           <Col md={8}>
     
-            <Card md={8} style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
+            <Card  style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
               <Card.Body>
                
               <Line
@@ -203,7 +203,7 @@ export default class UersChart extends React.Component {
          
           
             </Col>
-            <Col md={4}>
+            <Col md={4} >
           
             <Card style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
          

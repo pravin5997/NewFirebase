@@ -19,6 +19,8 @@
     "react-bootstrap-sidebar": "0.0.1",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.9.0",
+    "react-inputs-validation": "^4.4.1",
     "react-responsive-sidebar": "^0.1.16",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",

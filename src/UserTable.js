@@ -1,14 +1,53 @@
 import React, { Component } from 'react'
 import {Table,Card, Row, Col} from 'react-bootstrap'
+import fire from './config/Fire'
 
 export default class UserTable extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            userData:[],
+            applyDates:[],
+            admin:[],
+            mainData:[]
+        }
+    }
+    componentDidMount (){
+        fire.auth().onAuthStateChanged((user)=>{
+            const uid = user.uid;
+        fire.database().ref("/userData/"+ uid).once("value")
+       .then((snapshot) =>{
+         const userObject = snapshot.val();
+       console.log(userObject)
+       const leaveType = []
+       const applyDate = []
+       const aprovedBy = []
+       const tableData = []
+       for (var j in userObject){
+           leaveType.push(userObject[j].leave_type)
+           applyDate.push(userObject[j].applyDate)
+           aprovedBy.push(userObject[j].adminEmail)
+           
+       }
+       tableData.push(leaveType,aprovedBy,applyDate)
+         this.setState({
+                    userData:leaveType,
+                    applyDates:applyDate,
+                    admin:aprovedBy,
+                    mainData:tableData
+                    })
+       })
+        })
+    }
     render() {
+        
         return (
-            <div className ="App" style={{marginTop:"20px"}}>
+            <div className="container">
                 <Row style={{margin:"0px"}}>
-                    <Col>
-                <Card>
-                <Table  responsive striped bordered hover variant="dark">
+                    <Col md={12} style={{}}>
+                <Card style={{padding:"0px",border:"none",backgroundColor:"transparent"}}>
+                <Card.Body>
+                <Table  responsive style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
                     <thead>
                         <tr>
                         <th>No.</th>
@@ -20,6 +59,7 @@ export default class UserTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
+                       
                         <tr>
                         <td>1</td>
                         <td>Sick Leave</td>
@@ -54,6 +94,7 @@ export default class UserTable extends Component {
                         </tr>
                     </tbody>
                 </Table>
+                </Card.Body>
                 </Card>
                 </Col>
                 </Row>

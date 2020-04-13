@@ -160,7 +160,7 @@ export default class UserPieChart extends React.Component {
     return (
       
         <Pie
-            height="219px"
+            height="223px"
           data={this.state.ChartData}
           options={{
             title:{

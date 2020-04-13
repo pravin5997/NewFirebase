@@ -22,7 +22,7 @@ export default class Login extends Component {
         event.preventDefault();
         fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((res) =>{
             
-            this.props.history.push("/mainhome")
+            this.props.history.push("/sidebar")
             
         }).catch((error) => {
             console.log(error)
@@ -60,22 +60,20 @@ export default class Login extends Component {
                 <div className="auth-inner" >
                  <Form>
                 <h3>Sign In</h3>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" value={this.state.email} onChange={this.onChangeHandel} name="email" id="emailId" placeholder="Enter email" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.emailError}</p>
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={this.state.password} onChange={this.onChangeHandel}  name="password" id="password" placeholder="Enter password" />
                     <p style={{ color: 'red', fontSize: '12px' }}>{this.state.passwordError}</p>
                 </Form.Group>
-              
-                
 
                 <Button type="submit"  onClick={this.handleLogin} className="btn btn-primary btn-block">Login</Button>
                 <p className="singin-or-singup text-right">
-                Not Registered yet.Go to registration <Link to="/sign-up" style={{textDecoration:"none"}}>sign up?</Link>
+                Not Registered yet.Go to registration <Link to="/sign-up" style={{textDecoration:"none",color:"blue"}}>sign up?</Link>
                 </p>
                 
                 
