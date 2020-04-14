@@ -28,7 +28,7 @@ export default class AddAdmin extends Component {
     });
 }
     render() {
-       console.log(this.state.dropDown)
+      
         return (
             
             <div className="auth-inner" style={{minHeight:"200px",width:"25%"}} >   
