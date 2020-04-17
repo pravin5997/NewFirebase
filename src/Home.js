@@ -24,13 +24,14 @@ export default class Home extends Component {
             toDate: new Date(),
             admin:"",
             adminError:"",
-            options: [{name: 'Hitesh Sir', id: "tUL8MC88xSaMHXv08LHHkv1rdoG2"},{name: 'Gujan Sir', id: "pNowOO0jTXfsUZ2Yuz2xKLxotME2"},{name: 'Jay Bhai', id: "oZmpCay2OOhHxPOjHp0ZkvXcacu2"}],
+            options: [{name: 'Hitesh', id: "tUL8MC88xSaMHXv08LHHkv1rdoG2"},{name: 'Gunjan', id: "pNowOO0jTXfsUZ2Yuz2xKLxotME2"},{name: 'Jay', id: "oZmpCay2OOhHxPOjHp0ZkvXcacu2"}],
             selectedList:[],
             selectedItem:[],
             selectedValue:"",
             multidata:[],
             myfinalData:{},
-            selectedOption:""
+            selectedOption:"",
+            adminTableData:[]
 
         }
     }
@@ -51,6 +52,19 @@ export default class Home extends Component {
                     })
        })
         })
+        fire.database().ref("AddAdmin").once("value")
+       .then((snapshot) =>{
+         const adminObject = snapshot.val()
+         const AdminData = []
+        for (let i in adminObject){
+           
+            
+               AdminData.push( adminObject[i])
+            
+            
+        }
+        this.setState({adminTableData:AdminData})
+       })
     }
     onChangeHandle = (event) =>{
         this.setState({[event.target.name]:event.target.value})
@@ -66,13 +80,15 @@ export default class Home extends Component {
           fire.auth().onAuthStateChanged((user)=>{
             const uid =user.uid
             
-         
+        const userTableRef = fire.database().ref("userTableData/"+ uid)
         const userRef = fire.database().ref("userData/"+ uid)
         const fromDataFormat = this.state.fromDate.getDate()+"/"+parseInt(this.state.fromDate.getMonth()+1)+"/"+this.state.fromDate.getFullYear()
         const toDateFormat = this.state.toDate.getDate()+"/"+parseInt(this.state.toDate.getMonth()+1)+"/"+this.state.toDate.getFullYear()
         const currentDateFormat = this.state.currentDate.getDate()+"/"+parseInt(this.state.currentDate.getMonth()+1)+"/"+this.state.currentDate.getFullYear()
-        const data = {leave_type:this.state.dropDown,numberOfLeaves:this.state.NumberOfLeave,fromDate:fromDataFormat,toDate:toDateFormat,LeaveDecsp:this.state.leaveDecs,adminEmail:this.state.multidata,applyDate:currentDateFormat}
-          userRef.push(data).then(res =>
+        const data = {leave_type:this.state.dropDown,numberOfLeaves:this.state.NumberOfLeave,fromDate:fromDataFormat,toDate:toDateFormat,LeaveDecsp:this.state.leaveDecs,adminEmail:this.state.multidata,applyDate:currentDateFormat,Status:"Pending",ApprovedDate:"-"}
+        const data1 = {userName:this.state.userName,leave_type:this.state.dropDown,numberOfLeaves:this.state.NumberOfLeave,fromDate:fromDataFormat,toDate:toDateFormat,applyDate:currentDateFormat,Status:"Pending"}
+        userTableRef.push(data1)
+        userRef.push(data).then(res =>
               {
                   
                   this.props.history.push("/sidebar")
@@ -119,30 +135,37 @@ export default class Home extends Component {
 		}
     }
     multiChange = (selectedData) =>{
-      const userRef = fire.database().ref("user");
-      userRef.on("value",(snapshot)=>{
-        let users = snapshot.val()
-        console.log(users)
-        let finaldata = []
-       let events = selectedData.map((item) =>item.id)
+    
+      const allAdminEmail=[]
+      for (let data in selectedData){
+        allAdminEmail.push(selectedData[data].email)
+        
+      }
+      console.log(allAdminEmail.toString())
+      // const userRef = fire.database().ref("user");
+      // userRef.on("value",(snapshot)=>{
+      //   let users = snapshot.val()
+      //   console.log(users)
+      //   let finaldata = []
+      //  let events = selectedData.map((item) =>item.id)
      
-          for (let i in users){
+      //     for (let i in users){
           
-            events.map((item) =>{
+      //       events.map((item) =>{
             
-              if (item == i){
+      //         if (item == i){
                 
-                finaldata.push( users[i].email)
-              }
-          } ) 
-        }
+      //           finaldata.push( users[i].email)
+      //         }
+      //     } ) 
+      //   }
        
-      this.setState({multidata:finaldata.toString()})
-    })
+      this.setState({multidata:allAdminEmail.toString()})
+    // })
   }
  
     render() {
-   
+    
         return (
        
          <div className="container" style={{ boxShadow:" 0px 14px 80px rgba(10,58, 5, 0.2)",padding:"10px",borderRadius:"15px"}}> 
@@ -177,9 +200,9 @@ export default class Home extends Component {
                     <Form.Label>Admin</Form.Label>
                     {/* <div style={{backgroundColor:"white",borderRadius:"0.25rem"}}> */}
                     <Multiselect
-                        options={this.state.options}
+                        options={this.state.adminTableData}
                         onSelect = {this.multiChange}
-                        displayValue="name"
+                        displayValue="firstName"
                        
                     />
                     {/* </div> */}

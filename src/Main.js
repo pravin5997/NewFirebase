@@ -5,7 +5,7 @@ import SignUp from './Signup'
 import MainHome from './HomeMain'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import SideBar from './HomeSidebar'
+import homeSidebar from './HomeSidebar'
 import adminSidebar from './adminSidebar'
 
 export default class Main extends Component {
@@ -22,8 +22,7 @@ export default class Main extends Component {
                             <Route exact path='/' component={Login} />
                             <Route path="/sign-in" component={Login} />
                             <Route path="/sign-up" component={SignUp} />
-                            {/* <Route path="/mainhome" component={MainHome} /> */}
-                            <Route path="/sidebar" component={SideBar} />
+                            <Route path="/sidebar" component={homeSidebar} />
                             <Route path="/admin" component={adminSidebar} />
                         </Switch>
                        

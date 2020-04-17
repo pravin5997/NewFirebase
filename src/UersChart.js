@@ -60,84 +60,84 @@ export default class UersChart extends React.Component {
          for (var j in userObject){
           const myDate  = userObject[j].fromDate
           const myDate2 = myDate.split('/')
-          if (myDate2[1] == "1"){
+          if (myDate2[1] === "1"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             JanuaryLeave.push(totalLeave)
             const totalCasual = JanuaryLeave.reduce((a,b)=>a+b)
             this.setState({January:totalCasual}) 
             
           }
-          if (myDate2[1] == "2"){
+          if (myDate2[1] === "2"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             FebruaryLeave.push(totalLeave)
             const totalCasual = FebruaryLeave.reduce((a,b)=>a+b)
             this.setState({February:totalCasual}) 
             
           }
-          if (myDate2[1] == "3"){
+          if (myDate2[1] === "3"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             MarchLeave.push(totalLeave)
             const totalCasual = MarchLeave.reduce((a,b)=>a+b)
             this.setState({March:totalCasual}) 
             
           }
-          if (myDate2[1] == "4"){
+          if (myDate2[1] === "4"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             AprilLeave.push(totalLeave)
             const totalCasual = AprilLeave.reduce((a,b)=>a+b)
             this.setState({April:totalCasual}) 
             
           }
-          if (myDate2[1] == "5"){
+          if (myDate2[1] === "5"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             MayLeave.push(totalLeave)
             const totalCasual = MayLeave.reduce((a,b)=>a+b)
             this.setState({May:totalCasual}) 
             
           }
-          if (myDate2[1] == "6"){
+          if (myDate2[1] === "6"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             JuneLeave.push(totalLeave)
             const totalCasual = JuneLeave.reduce((a,b)=>a+b)
             this.setState({June:totalCasual}) 
             
           }
-          if (myDate2[1] == "7"){
+          if (myDate2[1] === "7"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             JulyLeave.push(totalLeave)
             const totalCasual = JulyLeave.reduce((a,b)=>a+b)
             this.setState({July:totalCasual}) 
             
           }
-          if (myDate2[1] == "8"){
+          if (myDate2[1] === "8"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             AugustLeave.push(totalLeave)
             const totalCasual = AugustLeave.reduce((a,b)=>a+b)
             this.setState({August:totalCasual}) 
             
           }
-          if (myDate2[1] == "9"){
+          if (myDate2[1] === "9"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             SeptemberLeave.push(totalLeave)
             const totalCasual = SeptemberLeave.reduce((a,b)=>a+b)
             this.setState({September:totalCasual}) 
             
           }
-          if (myDate2[1] == "10"){
+          if (myDate2[1] === "10"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             OctoberLeave.push(totalLeave)
             const totalCasual = OctoberLeave.reduce((a,b)=>a+b)
             this.setState({October:totalCasual}) 
             
           }
-          if (myDate2[1] == "11"){
+          if (myDate2[1] === "11"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             NovemberLeave.push(totalLeave)
             const totalCasual = NovemberLeave.reduce((a,b)=>a+b)
             this.setState({November:totalCasual}) 
             
           }
-          if (myDate2[1] == "12"){
+          if (myDate2[1] === "12"){
             const totalLeave = parseInt(userObject[j].numberOfLeaves)
             DecemberLeave.push(totalLeave)
             const totalCasual = DecemberLeave.reduce((a,b)=>a+b)

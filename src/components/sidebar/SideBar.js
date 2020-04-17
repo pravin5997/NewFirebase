@@ -14,7 +14,7 @@ const SideBar = props => (
     <div className={classNames('sidebar', {'is-open': props.isOpen})}>
       <div className="sidebar-header">
         <span color="info" onClick={props.toggle} style={{color: '#fff'}}>&times;</span>
-        <h3><img src="https://www.nividata.com/wp-content/uploads/2017/07/nividata_white-1.png" style={{height:"50px",width:"150px"}}></img></h3>
+        <h3><img src="https://www.nividata.com/wp-content/uploads/2017/07/nividata_white-1.png" style={{height:"50px",width:"200px"}}></img></h3>
       </div>
       <div className="side-menu">
         <Nav vertical className="list-unstyled pb-3">

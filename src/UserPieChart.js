@@ -47,6 +47,7 @@ export default class UserPieChart extends React.Component {
 
         }
     }
+    
     componentWillMount () {
         fire.auth().onAuthStateChanged((user)=>{
             const uid = user.uid;
@@ -61,56 +62,52 @@ export default class UserPieChart extends React.Component {
          const EarnedLeave = []
          const StudyLeave = []
          const HalfPay = []
+    
          for (var j in userObect){
-           const leaveId =userObect[j]
-           const leaveData = (leaveId)=>{
-
-            }
-             
            
-             if(userObect[j].leave_type == "Maternity Leave"){
+             if(userObect[j].leave_type === "Maternity Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               MaternityLeave.push(totalLeave)
               const totalCasual = MaternityLeave.reduce((a,b)=>a+b)
                 this.setState({Maternity:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Vacation leave"){
+             if(userObect[j].leave_type === "Vacation leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               VacationLeave.push(totalLeave)
               const totalCasual = VacationLeave.reduce((a,b)=>a+b)
                 this.setState({Vacation:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Sick Leave or Medical Leave"){
+             if(userObect[j].leave_type === "Sick Leave or Medical Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               SickLeave.push(totalLeave)
               const totalCasual = SickLeave.reduce((a,b)=>a+b)
                 this.setState({Sick:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Casual Leave"){
+             if(userObect[j].leave_type === "Casual Leave"){
                const totalLeave = parseInt(userObect[j].numberOfLeaves)
                CasualLeave.push(totalLeave)
                const totalCasual = CasualLeave.reduce((a,b)=>a+b)
                 this.setState({Casual:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Quarantine Leave"){
+             if(userObect[j].leave_type === "Quarantine Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               QuarantineLeave.push(totalLeave)
               const totalCasual = QuarantineLeave.reduce((a,b)=>a+b)
                 this.setState({Quarantine:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Earned Leave or Privilege Leave"){
+             if(userObect[j].leave_type === "Earned Leave or Privilege Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               EarnedLeave.push(totalLeave)
               const totalCasual = EarnedLeave.reduce((a,b)=>a+b)
                 this.setState({Earned:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Study Leave or Sabbatical Leave"){
+             if(userObect[j].leave_type === "Study Leave or Sabbatical Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               StudyLeave.push(totalLeave)
               const totalCasual = StudyLeave.reduce((a,b)=>a+b)
                 this.setState({Study:totalCasual}) 
              }
-             if(userObect[j].leave_type == "Half Pay Leave"){
+             if(userObect[j].leave_type === "Half Pay Leave"){
               const totalLeave = parseInt(userObect[j].numberOfLeaves)
               HalfPay.push(totalLeave)
               const totalCasual = HalfPay.reduce((a,b)=>a+b)

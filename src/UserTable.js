@@ -7,9 +7,7 @@ export default class UserTable extends Component {
         super(props)
         this.state = {
             userData:[],
-            applyDates:[],
-            admin:[],
-            mainData:[]
+            
         }
     }
     componentDidMount (){
@@ -18,28 +16,17 @@ export default class UserTable extends Component {
         fire.database().ref("/userData/"+ uid).once("value")
        .then((snapshot) =>{
             const userObject = snapshot.val();
-            const leaveType = []
-            const applyDate = []
-            const aprovedBy = []
-            const tableData = []
+            console.log(userObject)
+            const mainData = []
        for (var j in userObject){
-           leaveType.push(userObject[j].leave_type)
-           applyDate.push(userObject[j].applyDate)
-           aprovedBy.push(userObject[j].adminEmail)
-           
+           mainData.push(userObject[j])
        }
-       tableData.push(leaveType,aprovedBy,applyDate)
-         this.setState({
-                    userData:leaveType,
-                    applyDates:applyDate,
-                    admin:aprovedBy,
-                    mainData:tableData
-                    })
-       })
+       this.setState({userData:mainData})
         })
-    }
+    })
+}
     render() {
-        
+        console.log(this.state.userData)
         return (
             <div className="container">
                 <Row style={{margin:"0px"}}>
@@ -47,49 +34,29 @@ export default class UserTable extends Component {
                 <Card style={{padding:"0px",border:"none",backgroundColor:"transparent"}}>
                 <Card.Body>
                 <Table  responsive style={{boxShadow:"1px 2px 3px rgba(0, 0, 0, 0.125)"}}>
-                        <thead>
+                        <thead> 
                             <tr>
-                            <th>No.</th>
-                            <th>Leave Type</th>
-                            <th>Leave Apply Date</th>
-                            <th>Approved by</th>
-                            <th>Approved Date</th>
-                            <th>Status</th>
+                                <th>No.</th>
+                                <th>Leave Type</th>
+                                <th>Leave Apply Date</th>
+                                <th>Approved by</th>
+                                <th>Approved Date</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody> 
-                            <tr>
-                            <td>1</td>
-                            <td>Sick Leave</td>
-                            <td>05/04/2020</td>
-                            <td>hitesh123@gmail.com</td>
-                            <td>06/04/2020</td>
-                            <td>Pandding</td>
+                        {this.state.userData.map((item,index)=>(
+                            <tr key={index}>
+                                <td>{index}</td>
+                                <td>{item.leave_type}</td>
+                                <td>{item.applyDate}</td>
+                                <td>{item.adminEmail}</td>
+                                <td>{item.ApprovedDate}</td>
+                                <td style={{color:"red"}}>{item.Status}</td>
                             </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Casual Leave</td>
-                            <td>05/04/2020</td>
-                            <td>gunjan12@gmail.com</td>
-                            <td>06/04/2020</td>
-                            <td>Activated</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td>Vacation Leave</td>
-                            <td>05/04/2020</td>
-                            <td>kunal12@gmail.com</td>
-                            <td>06/04/2020</td>
-                            <td>Pandding</td>
-                            </tr>
-                            <tr>
-                            <td>4</td>
-                            <td>Study Leave</td>
-                            <td>05/04/2020</td>
-                            <td>jay123@gmail.com</td>
-                            <td>06/04/2020</td>
-                            <td>Activated</td>
-                            </tr>
+                        ))}
+                            
+
                         </tbody>
                 </Table>
                 </Card.Body>
